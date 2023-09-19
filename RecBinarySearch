@@ -1,0 +1,53 @@
+import java.util.Arrays;
+
+    public class RecBinarySearch {
+
+        public int search(int[] a, int e) {
+            if(a == null) {
+                return -1;
+            }
+        //This if statement is used to check if the input array a is null
+
+            return search(a, e, 0, a.length - 1);
+        }
+
+        private int search(int[] a, int e, int left, int right) {
+        //Takes 4 arguments just like psuedocode.
+        //a is the array we are searching through
+        //e is our target integer
+        //left is the leftmost(0) index in array a
+        //right is the rightmost(a.length - 1) index in array a
+        //left and right are used to act as placeholder for length of array a
+
+            if (left > right) {
+                return -1;
+            }
+        //left is greater than right if element is not in the array
+        //copied directly from psuedocode
+
+            int midpoint = left + (right - left) / 2;
+        //used to calculate midpoint
+        //same as psuedocode
+
+            if (e == a[midpoint]) {
+                return midpoint;
+            } 
+        //first condition
+        //if the target value is equal to the element in the middle index return index
+        //in this case the index is the midpoint
+        //if the element is in the array then this condition will always be met 
+
+            else if (e < a[midpoint]) {
+                return search(a, e, left, midpoint - 1);
+            } 
+        //second condition
+        //if target is less than value at midpoint
+        //recursively calls the function, updating the rightmost index to the midpoint - 1
+            else {
+                return search(a, e, midpoint + 1, right);
+            }
+        //third condition
+        //if target is greater than value at midpoint
+        //recursively calls the function, updating the leftmost index to the midpoint + 1
+        }
+        }
